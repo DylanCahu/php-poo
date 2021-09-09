@@ -8,7 +8,12 @@ class Personnage
     private $_nom = 'Inconnue'; //nom
     private $_force = 50; //force
     private $_experience = 1;
-    private $_degats = 0;
+    private $_degats = 0; 
+
+    public function __construct($nom)
+    {
+        $this->_nom = $nom;
+    }
 
     public function definirForce($force)
     {
