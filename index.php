@@ -22,5 +22,5 @@ $perso2->setExperience(1);
 $perso1->frapper($perso2);
 $perso2->frapper($perso1);
 
-print("<br>Dégats du joueur 1 :" . $perso1->getDegats());
-print("<br>Dégats du joueur 2 :" . $perso2->getDegats());
+//print("<br>Dégats du joueur 1 :" . $perso1->getDegats());
+//print("<br>Dégats du joueur 2 :" . $perso2->getDegats());
