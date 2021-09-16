@@ -16,13 +16,32 @@ class Personnage
     private static $_texteAdire = 'Texte prononcé';
     private static $nbrPlayer = 0;
 
-    public function __construct($nom, $force = 50, $degats = 0)
+    public function __construct(array $ligne)
     {
-        $this->setNom($nom);
-        $this->setForce($force);
-        $this->setDegats($degats);
-        $this->setExperience(1);
+        $this->hydrate($ligne); //hydrate renseigne un objet grace a une base de donnée
         self::$nbrPlayer++;
+    }
+
+    // public function hydrate(array $ligne){
+
+    //     $this->setNom($ligne['nom']);
+    //     $this->setForce((int)$ligne['force']);
+    //     $this->setDegats((int)$ligne['degats']);
+    //     $this->setExperience(1);
+    //     $this->setNiveau(0);
+    // }
+
+    public function hydrate(array $ligne)
+    {
+
+        foreach ($ligne as $key => $value) {
+            $methode = "set" . ucfirst($key);
+
+            if (method_exists($this, $methode)) {
+                //    print $methode .'<br>';
+                $this->$methode($value); //on appel la methode $methode dynamiquement grace au $
+            }
+        }
     }
 
     public function __toString(): string
@@ -63,7 +82,7 @@ class Personnage
         return $this;
     }
 
-    public function getforce()
+    public function getForce()
     {
         return $this->_force;
     }
@@ -72,6 +91,11 @@ class Personnage
     {
         $this->_experience = $_experience;
         return $this;
+    }
+
+    public function getExperience()
+    {
+        return $this->_experience;
     }
 
     public function gagnerExperience(): Personnage
@@ -100,9 +124,9 @@ class Personnage
         return $this->_degats;
     }
 
-    public function setId(): int
+    public function setId($id): Personnage
     {
-        if (!is_int($degats)) {
+        if (!is_int($id)) {
             trigger_error('L\'id d\'un personnage doit être un nombre entier', E_USER_ERROR);
             return $this;
         }
@@ -113,6 +137,18 @@ class Personnage
     public function getId()
     {
         return $this->_id;
+    }
+
+    public function setNiveau($niveau): Personnage
+    {
+
+        $this->_niveau = $niveau;
+        return $this;
+    }
+
+    public function getNiveau()
+    {
+        return $this->_niveau;
     }
 
     public static function parler()

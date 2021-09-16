@@ -17,5 +17,5 @@ ALTER TABLE `perso` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=
 
 
 
-insert into `perso` (nom, force, degats, niveau, experience) VALUES ('Mario', 50, 1, 1, 1);
-insert into `perso` (nom, force, degats, niveau, experience) VALUES ('Luidjy', 50, 1, 1, 1);
+insert into `perso` (nom, `force`, degats, niveau, experience) VALUES ('Mario', 50, 1, 1, 1);
+insert into `perso` (nom, `force`, degats, niveau, experience) VALUES ('Luidjy', 50, 1, 1, 1);
