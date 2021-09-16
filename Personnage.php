@@ -1,37 +1,43 @@
-
 <?php
 
 class Personnage
 {
-
-    // Déclaration des attributs et méthodes ici.
-    private $_nom = 'Inconnue'; //nom
-    private $_force = 50; //force
+    private $_id;
+    private $_nom = 'Inconnu';
+    private $_force = 50;
     private $_experience = 1;
     private $_degats = 0;
+    private $_niveau = 0;
 
-    public function __construct($nom, $force, $degats)
+    const FORCE_PETITE = 20;
+    const FORCE_MOYENNE = 50;
+    const FORCE_GRANDE = 80;
+
+    private static $_texteAdire = 'Texte prononcé';
+    private static $nbrPlayer = 0;
+
+    public function __construct($nom, $force = 50, $degats = 0)
     {
-        $this->setNom($nom); //creation du nom du personnage
-        $this->setForce($force); //creation de la force du personnage
-        $this->setDegats($degats); //creation des degats du personnage
+        $this->setNom($nom);
+        $this->setForce($force);
+        $this->setDegats($degats);
         $this->setExperience(1);
-        print("<br>Le joueur  " . $this->_nom . "  a été créé !");
+        self::$nbrPlayer++;
     }
 
-    public function __toString(){
-        //si un code demande a utilisé un objet sous forme de chaine de caractère, 
-        //cette fonction s'en chargera
-        return $this->getNom() . "(" .$this->getDegats(). ")";
+    public function __toString(): string
+    {
+        return $this->getNom() . "(" . $this->getDegats() . ")";
     }
 
-    public function setNom($nom)
+    public function setNom(string $nom): Personnage
     {
         if (!is_string($nom)) {
-            trigger_error('Le nom doit etre textuel !', E_USER_ERROR);
-            return; //stop du programme
+            trigger_error('Le nom d\'un personnage doit être un texte', E_USER_ERROR);
+            return $this;
         }
         $this->_nom = $nom;
+        return $this;
     }
 
     public function getNom()
@@ -39,79 +45,92 @@ class Personnage
         return $this->_nom;
     }
 
-    public function setForce($force)
+    public function setForce($force): Personnage
     {
         if (!is_int($force)) {
-            trigger_error('La force doit etre un entier !', E_USER_ERROR);
-            return; //stop du programme
+            trigger_error('La force d\'un personnage doit être un nombre entier', E_USER_ERROR);
+            return $this;
         }
         if ($force > 100) {
-            trigger_error('La force doit etre inferieur à 100 !', E_USER_ERROR);
-            return; //stop du programme
+            trigger_error('La force d\'un personnage ne doit pas dépasser 100', E_USER_ERROR);
+            return $this;
         }
-        $this->_force = $force;
+        if (in_array($force, array(self::FORCE_PETITE, self::FORCE_MOYENNE, self::FORCE_GRANDE))) {
+            $this->_force = $force;
+        } else {
+            trigger_error('LA FORCE N\'EST PAS CORRECTE ', E_USER_ERROR);
+        }
+        return $this;
     }
 
-    public function getForce()
+    public function getforce()
     {
         return $this->_force;
     }
 
-    public function setDegats($degats)
+    public function setExperience(int $_experience): Personnage
+    {
+        $this->_experience = $_experience;
+        return $this;
+    }
+
+    public function gagnerExperience(): Personnage
+    {
+        $this->_experience++;
+        return $this;
+    }
+
+    public function afficheExperience()
+    {
+        return $this->_experience;
+    }
+
+    public function setDegats($degats): Personnage
     {
         if (!is_int($degats)) {
-            trigger_error('Les degats doivent etre un entier !', E_USER_ERROR);
-            return; //stop du programme
+            trigger_error('Les dégats d\'un personnage doit être un nombre entier', E_USER_ERROR);
+            return $this;
         }
         $this->_degats = $degats;
+        return $this;
     }
+
     public function getDegats()
     {
         return $this->_degats;
     }
 
-    public function setExperience($experience)
+    public function setId(): int
     {
-        if (!is_int($experience)) {
-            trigger_error('L\'experience doit etre un entier !', E_USER_ERROR);
-            return; //stop du programme
+        if (!is_int($degats)) {
+            trigger_error('L\'id d\'un personnage doit être un nombre entier', E_USER_ERROR);
+            return $this;
         }
-        if ($experience > 100) {
-            trigger_error('L\'experience ne peut pas dépasser 100 !', E_USER_ERROR);
-            return; //stop du programme
+        $this->_id = $id;
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    public static function parler()
+    {
+        //print(self::$_texteAdire);// "JE vais Te faire bobo !");
+        print('<p> JE suis le n° ' . self::$nbrPlayer . '</p>');
+    }
+
+    public function frapper(Personnage $adversaire): Personnage
+    {
+        // $adversaire->_degats += $this->_force; idem a :
+        if (get_class($adversaire) == "Personnage") {
+            $adversaire->_degats += $this->_force;
+            $this->gagnerExperience();
+            print('<div class="action">' . $adversaire . 's\'est pris une mandale par ' . $this . ' ==> Dégats de ' . $adversaire . ' = ' . $adversaire . '</div>');
+        } else {
+            print('FRéRO çA MARCHE PA LA !');
         }
-        $this->_experience = $experience;
+        return $this;
     }
-
-    //Une methode augmentant l'attribut $experience du personnage.
-    public function getExperience()
-    {
-
-        return $this->_experience;
-    }
-
-    //Une methode augmentant l'attribut $experience du personnage.
-    public function gagnerExperience()
-    {
-        $this->_experience++;
-    }
-
-    //une methode qui permet de parler.
-    public function parler()
-    {
-        print('Je suis un perso <br>');
-    }
-
-    //une methode qui frappera un personnage (suivant la force qu'il a).
-    public function frapper(Personnage $adversaire)
-    {
-        $adversaire->_degats += $this->_force;//$adversaire->_degats = $adversaire->_degats + $this->_force;
-        $this->gagnerExperience();
-        print('<br>'. $adversaire .' a été frappé par ' . $this . '-> Dégat de '
-        . $adversaire . ' = ' . $adversaire->getDegats(). ' .'); 
-        //ici, les $this ou $adversaire (sans rien) appel toString()
-    }
-
 }
-
-?>

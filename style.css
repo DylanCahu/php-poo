@@ -1,0 +1,56 @@
+body {
+    display: grid;
+    justify-content: center;
+    user-select: none;
+}
+h1{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px;
+    padding: 3px;
+    right: 0;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0 rgb(99, 0, 0);
+}
+
+img {
+    width: 50px;
+}
+
+.stat_card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.exp{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 350px;
+    max-width: 400px;
+    margin: 10px;
+    padding: 3px;
+    right: 0;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 0 rgb(49, 49, 49);
+    transition: 0.2s;
+}
+
+.exp_name{
+    max-width: 80px;
+}
+
+.exp:hover{
+    box-shadow: 2px 2px 7px 0 black;
+    transition: 0.2s;
+}
+
+.action {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+    padding: 3px;
+    right: 0;
+}
