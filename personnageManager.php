@@ -26,6 +26,11 @@ class PersonnageManager
 
     public function getOne(int $id)
     {
+        $sth = $this->_db->prepare('Select nom ,`force`, degats, niveau, experience FROM perso id= ?;');
+        $sth->execute(array($id));
+        $ligne = $sth->fetch();
+        $perso = new Personnage($ligne);
+        return $perso;
 
     }
 
