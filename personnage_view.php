@@ -2,7 +2,7 @@
 include "header.php";
 
 
-$id= (int)$_GET["id"];
+$id= $_GET["id"];
 
 try {
     $db = new PDO($dsn, $user, $pwd);

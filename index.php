@@ -14,7 +14,10 @@ try {
     print('</br>Liste des personnages : ');
     foreach ($personnages as $personnage){
         // print('</br>' . $personnage->getNom());
-        print('<h3><a href="personnage_view.php?id=' . $personnage->getId() . '">' . $personnage->getNom() . ' : </a></h3><p class="exp"> ça force est de : ' . $personnage->getForce() . '<br> ses dégats sont : ' . $personnage->getDegats() . '<br> son XP est :' . $personnage->getExperience() . '<br> Il est niveau : ' . $personnage->getNiveau() .'</p>');
+        print('<h3><a href="personnage_view.php?id=' . $personnage->getId() . '">' . $personnage->getNom() . ' 
+        : </a></h3><p class="exp"> ça force est de : ' . $personnage->getForce() . '<br> ses dégats sont : 
+            ' . $personnage->getDegats() . '<br> son XP est :' . $personnage->getExperience() . '<br> Il est niveau :
+             ' . $personnage->getNiveau() .'</p>');
 
     }
 

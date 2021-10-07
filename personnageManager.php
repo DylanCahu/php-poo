@@ -26,7 +26,7 @@ class PersonnageManager
 
     public function getOne(int $id)
     {
-        $sth = $this->_db->prepare('Select nom ,`force`, degats, niveau, experience FROM perso id= ?;');
+        $sth = $this->_db->prepare("Select nom ,`force`, degats, niveau, experience FROM perso id= $id ;");
         $sth->execute(array($id));
         $ligne = $sth->fetch();
         $perso = new Personnage($ligne);
@@ -38,10 +38,28 @@ class PersonnageManager
     {
         //retourne la liste de chaque personnages
         $ListeDePersonnages = array();
-        $request =$this->_db->query('SELECT id, nom, `force`, degats, niveau, experience FROM perso');
+        $request =$this->_db->query('SELECT id, classe, nom, `force`, degats, niveau, experience FROM perso');
         while ($ligne = $request->fetch(PDO::FETCH_ASSOC)) {
 
-            $perso = new Personnage($ligne);
+            switch ((int)$ligne['classe']) {
+                case Personnage::MAGICIEN:
+                    $perso = new Magicien($ligne);
+                    break;
+
+                case Personnage::GUERRIER:
+                    $perso = new Guerrier($ligne);
+                    break;
+
+                case Personnage::BRUTE:
+                    $perso = new Brute($ligne);
+                    break;
+
+                default:
+                    break;
+            }
+
+
+           
             $ListeDePersonnages[] = $perso;//entre le perso dans le tableau
         }
         return $ListeDePersonnages;
