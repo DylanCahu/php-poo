@@ -18,7 +18,6 @@ abstract class Personnage
     const GUERRIER = 2;
     const BRUTE = 3;
 
-    private static $_texteAdire = 'DO U TOKIGN TO ME ? JE vais Te faire bobo !';
     private static $nbrPlayer = 0;
 
     public function __construct(array $ligne)
@@ -27,8 +26,9 @@ abstract class Personnage
         self::$nbrPlayer++;
     }
 
-    public function hydrate(array $ligne)
-    {
+    final public function hydrate(array $ligne) //grace a final, aucune classe ne peut heriter 
+                                                //de hydrate mais on ne peut, par conséquent, 
+    {                                           //plus réécrire dessus
         foreach($ligne as $key => $value){
             $method = 'set'.ucfirst($key);
             if (method_exists($this, $method)) {
@@ -92,7 +92,7 @@ abstract class Personnage
             return $this;
         }
         // if (in_array($force, array(self::FORCE_PETITE, self::FORCE_MOYENNE, self::FORCE_GRANDE))){
-        //     $this->_force = $force;
+             $this->_force = $force;
         // } else{
         //     trigger_error('LA FORCE N\'EST PAS CORRECTE ', E_USER_ERROR);
         // }

@@ -1,6 +1,6 @@
 <?php
 
-class Magicien extends Personnage
+final class Magicien extends Personnage //final empeche d'herriter de cette classe
 {
     private $_magie; //indique la puissance du magicien
 
@@ -15,4 +15,5 @@ class Magicien extends Personnage
     {
         print("</br>" .$this->getNom() . " : Tu as le QI d'une huitre !");
     }
+
 }

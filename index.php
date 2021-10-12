@@ -16,7 +16,7 @@ try {
         // print('</br>' . $personnage->getNom());
         print('<h3><a href="personnage_view.php?id=' . $personnage->getId() . '">' . $personnage->getNom() . ' 
         : </a></h3><p class="exp"> sa force est de : ' . $personnage->getForce() . '<br> ses dégats sont : 
-            ' . $personnage->getDegats() . '<br> son XP est :' . $personnage->getExperience() . '<br> Il est niveau :
+            ' . $personnage->getDegats() . '<br> son XP est :' . $personnage->afficheExperience() . '<br> Il est niveau :
              ' . $personnage->getNiveau() .'</p>');
 
     }

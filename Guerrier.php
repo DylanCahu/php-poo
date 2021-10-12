@@ -1,6 +1,6 @@
 <?php
 
-class Guerrier extends Personnage {
+final class Guerrier extends Personnage {
     private $_force; //indique la puissance du magicien
 
     public function attaquer($persoAttaque): Personnage  //on va réecrire sur la class perso MAIS il faut renvoyer la meme chose (ici : Personnage)

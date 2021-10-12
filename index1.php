@@ -36,7 +36,7 @@ $perso1->setExperience(1)->attaquer($perso2)->getDegats();
 $perso2->setExperience(15);
 
 // print("ken dit = ");
-// Personnage::parler();
+// Personnage::parler();.
 
 $perso1->attaquer($perso2);
 $perso2->attaquer($perso1);
