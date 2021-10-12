@@ -15,7 +15,7 @@ try {
     foreach ($personnages as $personnage){
         // print('</br>' . $personnage->getNom());
         print('<h3><a href="personnage_view.php?id=' . $personnage->getId() . '">' . $personnage->getNom() . ' 
-        : </a></h3><p class="exp"> ça force est de : ' . $personnage->getForce() . '<br> ses dégats sont : 
+        : </a></h3><p class="exp"> sa force est de : ' . $personnage->getForce() . '<br> ses dégats sont : 
             ' . $personnage->getDegats() . '<br> son XP est :' . $personnage->getExperience() . '<br> Il est niveau :
              ' . $personnage->getNiveau() .'</p>');
 
@@ -51,7 +51,15 @@ $unMagicien = new Magicien(
     ]
 );
 
-print ("</br>" . $unMagicien);
+$unCon = new Guerrier(
+    [
+        'id'=>10,
+        'nom'=>'Spartacouille',
+        'force'=>80,
+    ]
+);
 
 $combat = new TerrainDeCombat();
 $combat->lancerUnCombat($unMagicien, $uneBrute);
+print("</br><hr></br>");
+$combat->lancerUnCombat($unCon, $uneBrute);

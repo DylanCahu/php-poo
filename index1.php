@@ -32,14 +32,14 @@ $perso2 = new Personnage("perso2", Personnage::FORCE_PETITE);
 Personnage::parler();
 
 
-$perso1->setExperience(1)->frapper($perso2)->getDegats();
+$perso1->setExperience(1)->attaquer($perso2)->getDegats();
 $perso2->setExperience(15);
 
 // print("ken dit = ");
 // Personnage::parler();
 
-$perso1->frapper($perso2);
-$perso2->frapper($perso1);
+$perso1->attaquer($perso2);
+$perso2->attaquer($perso1);
 print("<div class=stat_card>");
     print("<div class='exp'> 
                 <img src=Capture.png>

@@ -135,6 +135,11 @@ abstract class Personnage
         print('<p> JE suis le n° '.self::$nbrPlayer.'</p>');
     }
 
-    abstract public function frapper(Personnage $adversaire):Personnage; 
+    abstract public function attaquer(Personnage $adversaire):Personnage; 
+    //abstract force les methodes filles à avoir une classe attaquer()
 
+    public function insulter()
+    {
+        print("</br>" .$this->getNom()." : Tête de gland !");
+    }
 }
