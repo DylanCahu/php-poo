@@ -34,3 +34,24 @@ try {
     print($e->getMessage());
 }
 
+$uneBrute = new Brute(
+    [
+        'id'=>7,
+        'nom'=>'Brutus',
+        'force'=>50,
+    ]
+);
+
+//création de perso local pour experimenter
+$unMagicien = new Magicien(
+    [
+        'id'=>9,
+        'nom'=>'Dumbeldord',
+        'force'=>20,
+    ]
+);
+
+print ("</br>" . $unMagicien);
+
+$combat = new TerrainDeCombat();
+$combat->lancerUnCombat($unMagicien, $uneBrute);
