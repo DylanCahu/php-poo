@@ -43,7 +43,7 @@ $uneBrute = new Brute(
 );
 
 //création de perso local pour experimenter
-$unMagicien = new Magicien(
+$unMagicien = new MagicienVoleur(
     [
         'id'=>9,
         'nom'=>'Dumbeldord',
@@ -51,7 +51,7 @@ $unMagicien = new Magicien(
     ]
 );
 
-$unCon = new Guerrier(
+$unCon = new GuerrierVoleur(
     [
         'id'=>10,
         'nom'=>'Spartacouille',
@@ -62,4 +62,4 @@ $unCon = new Guerrier(
 $combat = new TerrainDeCombat();
 $combat->lancerUnCombat($unMagicien, $uneBrute);
 print("</br><hr></br>");
-$combat->lancerUnCombat($unCon, $uneBrute);
+$combat->lancerUnCombat($unCon, $unMagicien);

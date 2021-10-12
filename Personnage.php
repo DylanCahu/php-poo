@@ -9,6 +9,7 @@ abstract class Personnage
     private $_degats = 0;
     private $_niveau = 0;
     private $_classe = 0;
+    private $_poche = 50;
 
     const FORCE_PETITE = 20;
     const FORCE_MOYENNE = 50;
@@ -37,9 +38,9 @@ abstract class Personnage
         }
     }
 
-    public function __toString():string
+    public function __toString():string //s'execute quand on fait qu'un "print($perso)"
     {
-        return $this->getNom() . "(". $this->getDegats() .")";
+        return $this->getNom() . "(". $this->getPoche() .")";
     }
 
     public function setId(int $id):Personnage 
@@ -141,5 +142,25 @@ abstract class Personnage
     public function insulter()
     {
         print("</br>" .$this->getNom()." : Tête de gland !");
+    }
+
+    /**
+     * Get the value of _poche
+     */ 
+    public function getPoche()
+    {
+        return $this->_poche;
+    }
+
+    /**
+     * Set the value of _poche
+     *
+     * @return  self
+     */ 
+    public function setPoche($_poche)
+    {
+        $this->_poche = $_poche;
+
+        return $this;
     }
 }
